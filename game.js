@@ -1,3 +1,6 @@
+// ==========================================
+// 1. GAME SETTINGS & THE MAZE
+// ==========================================
 const TILE = 16; // Each grid square is 16x16 pixels
 
 // 1 = Wall, 0 = Dot, 2 = Empty Space
@@ -170,7 +173,7 @@ class GameRenderer extends me.Renderable {
     gameWon = true;
   }
 
- // ==========================================
+  // ==========================================
   // 4. DRAW EVERYTHING ON THE SCREEN
   // ==========================================
   draw(renderer) {
