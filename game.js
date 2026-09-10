@@ -209,19 +209,28 @@ class GameRenderer extends me.Renderable {
     renderer.fillRect(ghost.tileX * TILE + 1, ghost.tileY * TILE + 1, TILE - 2, TILE - 2);
 
     // Draw Score
-    renderer.setColor("#FFFFFF");
-    renderer.setFont("Arial", "14px");
-    renderer.fillText(`SCORE: ${score}`, 10, ROWS * TILE + 20);
+    new me.Font("Arial", 14, "#FFFFFF").draw(
+      renderer,
+      `SCORE: ${score}`,
+      10,
+      ROWS * TILE + 20
+    );
 
     // Draw Game Over or Victory message
     if (gameOver) {
-      renderer.setColor("#FF0000");
-      renderer.setFont("Arial", "22px");
-      renderer.fillText("GAME OVER!", 80, ROWS * TILE / 2);
+      new me.Font("Arial", 22, "#FF0000").draw(
+        renderer,
+        "GAME OVER!",
+        80,
+        ROWS * TILE / 2
+      );
     } else if (gameWon) {
-      renderer.setColor("#00FF00");
-      renderer.setFont("Arial", "22px");
-      renderer.fillText("YOU WIN!", 90, ROWS * TILE / 2);
+      new me.Font("Arial", 22, "#00FF00").draw(
+        renderer,
+        "YOU WIN!",
+        90,
+        ROWS * TILE / 2
+      );
     }
   }
 }
