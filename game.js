@@ -84,7 +84,7 @@ class GameRenderer extends me.Renderable {
   constructor() {
     super(0, 0, COLS * TILE, ROWS * TILE + 30);
     this.isPersistent = true;
-    this.floating = true;
+    this.floating = false;
   }
 
   update(dt) {
@@ -177,6 +177,12 @@ class GameRenderer extends me.Renderable {
   // 4. DRAW EVERYTHING ON THE SCREEN
   // ==========================================
   draw(renderer) {
+    renderer.resetTransform();
+
+    // Clear the previous frame before drawing the current game state.
+    renderer.setColor("#000000");
+    renderer.fillRect(0, 0, COLS * TILE, ROWS * TILE + 30);
+
     // Draw the maze
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
@@ -232,6 +238,7 @@ class GameRenderer extends me.Renderable {
         ROWS * TILE / 2
       );
     }
+
   }
 }
 
@@ -240,7 +247,12 @@ class GameRenderer extends me.Renderable {
 // ==========================================
 me.device.onReady(() => {
   // Start the canvas window (Width: 19 tiles, Height: 22 tiles + score bar)
-  if (!me.video.init(COLS * TILE, ROWS * TILE + 30, { parent: "screen", scale: "auto" })) {
+  if (!me.video.init(COLS * TILE, ROWS * TILE + 30, {
+    wrapper: "screen",
+    renderer: me.video.CANVAS,
+    scale: "auto",
+    scaleMethod: "fit"
+  })) {
     alert("Your browser does not support canvas!");
     return;
   }
